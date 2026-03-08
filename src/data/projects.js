@@ -1,0 +1,40 @@
+const projects = [
+  {
+    id: 'ai-ppt-generator',
+    title: 'neko.ai',
+    description: 'An AI-powered tool that converts prompts into polished presentation slides.',
+    technologies: ['Python', 'LLMs', 'FastAPI', 'React'],
+    status: 'completed',
+    github: 'https://github.com/chethans2005/neko.ai',
+    demo: 'https://neko-ai-seven.vercel.app/',
+    overview: 'Generates complete slide decks from user prompts with smart structure, concise content, and speaker-ready flow.',
+    problem: 'Creating presentations manually is repetitive and slow, especially for technical teams that need frequent updates.',
+    solution: 'A prompt-to-slides pipeline powered by LLMs and reusable slide templates to reduce authoring time and improve quality.',
+  },
+  {
+    id: 'ai-mesh-generator',
+    title: 'messhy.ai',
+    description: 'A system that generates 3D mesh models using AI techniques.',
+    technologies: ['Python', 'PyTorch', '3D Processing', 'Node.js'],
+    status: 'in-progress',
+    github: 'https://github.com/chethans2005/messhy-ai',
+    demo: '',
+    overview: 'Transforms text guidance into 3D mesh candidates optimized for practical rendering workflows.',
+    problem: 'Traditional 3D asset creation requires expert workflows and extensive manual effort.',
+    solution: 'An AI generation engine with mesh cleanup and export utilities to accelerate asset creation.',
+  },
+  {
+    id: 'automl-system',
+    title: 'neko-matic',
+    description: 'An automated machine learning pipeline for model selection and parameter optimization.',
+    technologies: ['Python', 'scikit-learn', 'MLflow'],
+    status: 'in-progress',
+    github: 'https://github.com/chethans2005/neko-matic',
+    demo: '',
+    overview: 'A configurable AutoML stack that benchmarks multiple algorithms and tuning strategies in one run.',
+    problem: 'Manual model selection and hyperparameter tuning can delay experimentation and deployment.',
+    solution: 'An orchestration workflow that automates preprocessing, model search, experiment tracking, and reporting.',
+  },
+]
+
+export default projects
