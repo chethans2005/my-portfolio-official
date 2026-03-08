@@ -6,6 +6,10 @@ const STATUS = {
 }
 
 function ProjectModal({ project, onClose }) {
+  const screenshots = Array.isArray(project?.screenshots)
+    ? project.screenshots.filter((screenshot) => Boolean(screenshot?.src)).slice(0, 2)
+    : []
+
   return (
     <AnimatePresence>
       {project ? (
@@ -63,6 +67,23 @@ function ProjectModal({ project, onClose }) {
                 <h4 className="modal-title">Solution</h4>
                 <p className="modal-body-text">{project.solution}</p>
               </div>
+              {screenshots.length > 0 && (
+                <div>
+                  <h4 className="modal-title">Screenshots</h4>
+                  <div className="modal-screenshots">
+                    {screenshots.map((screenshot, index) => (
+                      <figure key={`${project.id}-screenshot-${index}`} className="modal-screenshot-card">
+                        <img
+                          className="modal-screenshot-image"
+                          src={screenshot.src}
+                          alt={`${project.title} screenshot ${index + 1}: ${screenshot.label || 'Preview'}`}
+                          loading="lazy"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div>
                 <h4 className="modal-title">Tech Stack</h4>
                 <div className="modal-chips">

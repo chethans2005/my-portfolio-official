@@ -1,3 +1,17 @@
+import nekoAiScreenshotOne from '../assets/neko-ai-1.png'
+import nekoAiScreenshotTwo from '../assets/neko-ai-2.png'
+
+const defaultScreenshots = [
+  {
+    src: nekoAiScreenshotOne,
+    label: 'Product workspace view',
+  },
+  {
+    src: nekoAiScreenshotTwo,
+    label: 'Generated output preview',
+  },
+]
+
 const projects = [
   {
     id: 'ai-ppt-generator',
@@ -10,6 +24,7 @@ const projects = [
     overview: 'Generates complete slide decks from user prompts with smart structure, concise content, and speaker-ready flow.',
     problem: 'Creating presentations manually is repetitive and slow, especially for technical teams that need frequent updates.',
     solution: 'A prompt-to-slides pipeline powered by LLMs and reusable slide templates to reduce authoring time and improve quality.',
+    screenshots: defaultScreenshots,
   },
   {
     id: 'ai-mesh-generator',
@@ -22,6 +37,7 @@ const projects = [
     overview: 'Transforms text guidance into 3D mesh candidates optimized for practical rendering workflows.',
     problem: 'Traditional 3D asset creation requires expert workflows and extensive manual effort.',
     solution: 'An AI generation engine with mesh cleanup and export utilities to accelerate asset creation.',
+    screenshots: null,
   },
   {
     id: 'automl-system',
@@ -34,6 +50,7 @@ const projects = [
     overview: 'A configurable AutoML stack that benchmarks multiple algorithms and tuning strategies in one run.',
     problem: 'Manual model selection and hyperparameter tuning can delay experimentation and deployment.',
     solution: 'An orchestration workflow that automates preprocessing, model search, experiment tracking, and reporting.',
+    screenshots: null,
   },
 ]
 
