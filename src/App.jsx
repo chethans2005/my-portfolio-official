@@ -7,6 +7,7 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import CustomCursor from './components/CustomCursor'
 import ProjectModal from './pages/ProjectModal'
 import projects from './data/projects'
 
@@ -63,6 +64,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
+      <CustomCursor />
       <div className="bg-orb bg-orb-one" />
       <div className="bg-orb bg-orb-two" />
 
