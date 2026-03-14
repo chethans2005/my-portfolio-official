@@ -20,8 +20,7 @@ function Hero({ onViewProjects, onContact }) {
           </h1>
           <h2 className="hero-title">Software Engineer | AI &amp; Full Stack Developer</h2>
           <p className="hero-subtitle">
-            I build scalable web applications and AI-driven systems with a strong foundation in computer science,
-            clean architecture, and production-ready engineering practices.
+            I build scalable web apps and AI products with strong CS fundamentals.
           </p>
 
           <div className="hero-buttons">
@@ -45,15 +44,15 @@ function Hero({ onViewProjects, onContact }) {
           <div className="hero-panel-content">
             <div className="hero-feature-row">
               <span className="hero-badge">Core CS</span>
-              <p>OOP, DSA, operating systems, computer networks, and system design fundamentals.</p>
+              <p>OOP, DSA, OS, networks, and system design.</p>
             </div>
             <div className="hero-feature-row">
               <span className="hero-badge">Full Stack</span>
-              <p>JavaScript, React, Node.js, and REST APIs for scalable frontend and backend systems.</p>
+              <p>JavaScript, React, Node.js, and REST APIs.</p>
             </div>
             <div className="hero-feature-row">
               <span className="hero-badge">AI/ML</span>
-              <p>Machine learning, deep learning, LLM integration, and Hugging Face ecosystem tooling.</p>
+              <p>ML, deep learning, LLM apps, and Hugging Face.</p>
             </div>
           </div>
           <div className="hero-metric-grid">

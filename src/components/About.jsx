@@ -3,15 +3,15 @@ import { motion as Motion } from 'framer-motion'
 const aboutCards = [
   {
     title: 'Core Computer Science',
-    content: 'Strong grounding in object-oriented programming (Java, C++), data structures and algorithms, computer networks, operating systems, and system design concepts.',
+    content: 'Strong in OOP, DSA, networks, operating systems, and system design.',
   },
   {
     title: 'Engineering & Databases',
-    content: 'Experience designing reliable backend services using SQL, MongoDB, Redis, and Neo4j with practical focus on data modeling, indexing, and query optimization.',
+    content: 'Builds backend services with SQL, MongoDB, Redis, and Neo4j.',
   },
   {
     title: 'AI as a Specialization',
-    content: 'Builds ML and deep learning features, integrates LLMs with applications, and develops data pipelines and workflows using the Hugging Face ecosystem.',
+    content: 'Builds ML features, LLM apps, and Hugging Face workflows.',
   },
 ]
 
@@ -27,8 +27,7 @@ function About() {
         <p className="section-kicker">About</p>
         <h3 className="section-title">Software Engineering with Strong Fundamentals</h3>
         <p className="section-copy">
-          I am a software engineer who builds robust full-stack products with a balanced profile across computer science fundamentals,
-          scalable web engineering, and AI/ML implementation. AI is an area of specialization, built on top of strong core engineering skills.
+          Software engineer focused on full-stack products with strong CS fundamentals and AI specialization.
         </p>
       </Motion.div>
 

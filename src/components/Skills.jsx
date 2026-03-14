@@ -21,27 +21,27 @@ const skillCategories = [
   {
     label: 'Core Computer Science',
     score: 90,
-    details: 'OOP (Java, C++), DSA, Computer Networks, Operating Systems, System Design',
+    details: 'OOP, DSA, networks, operating systems, system design',
   },
   {
     label: 'Databases',
     score: 88,
-    details: 'SQL, MongoDB, Redis, Neo4j, with database design, indexing, query optimization, and data modeling',
+    details: 'SQL, MongoDB, Redis, Neo4j, plus modeling and query tuning',
   },
   {
     label: 'Web Development',
     score: 92,
-    details: 'JavaScript, React, Node.js, REST APIs, frontend and backend architecture, scalable web apps',
+    details: 'JavaScript, React, Node.js, REST APIs, frontend and backend',
   },
   {
     label: 'AI / Machine Learning',
     score: 87,
-    details: 'Machine Learning, Deep Learning, LLM applications, Hugging Face, model integration, ML workflows',
+    details: 'ML, deep learning, LLM apps, Hugging Face, model integration',
   },
   {
     label: 'Tools',
     score: 86,
-    details: 'Git, Linux, API integration, debugging, and performance optimization',
+    details: 'Git, Linux, API integration, debugging, optimization',
   },
 ]
 
@@ -127,7 +127,7 @@ function Skills() {
           <p className="snapshot-kicker">Capability Snapshot</p>
           <h4 className="snapshot-title">Balanced Engineering Coverage</h4>
           <p className="snapshot-desc">
-            Strong software engineering foundation across computer science, full-stack systems, and AI/ML specialization.
+            Strong across CS, full-stack systems, and AI/ML.
           </p>
 
           <div className="skill-bars">

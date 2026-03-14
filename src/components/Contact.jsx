@@ -68,7 +68,7 @@ function Contact() {
         <p className="section-kicker">Contact</p>
         <h3 className="section-title">Let's Build Together</h3>
         <p className="section-copy">
-          Open to full-stack engineering and product-focused roles. Always happy to chat about interesting problems.
+          Open to full-stack and product-focused roles.
         </p>
       </Motion.div>
 
@@ -77,7 +77,7 @@ function Contact() {
           <p className="connect-kicker">Connect</p>
           <h4 className="connect-title">Reach Out</h4>
           <p className="connect-desc">
-            Open to software engineering opportunities focused on full-stack development, AI tooling, and data systems. Feel free to reach out for collaborations, questions, or just to say hi!
+            Open to full-stack, AI, and data-focused opportunities. Happy to connect.
           </p>
 
           <div className="connect-links">
