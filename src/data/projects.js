@@ -1,5 +1,7 @@
 import nekoAiScreenshotOne from '../assets/neko-ai-1.png'
 import nekoAiScreenshotTwo from '../assets/neko-ai-2.png'
+import cliScreenshotOne from '../assets/cli-1.png'
+import cliScreenshotTwo from '../assets/cli-2.png'
 
 const defaultScreenshots = [
   {
@@ -52,6 +54,48 @@ const projects = [
     solution: 'Automates preprocessing, model search, tracking, and reporting.',
     screenshots: null,
   },
+  {
+    id: 'langbuddy',
+    title: 'LangBuddy',
+    description: 'Real-time language learning chat platform.',
+    technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'Socket.io', 'JWT'],
+    status: 'in-progress',
+    github: 'https://github.com/chethans2005/LangBuddy',
+    demo: '',
+    overview: 'Peer-to-peer chat platform connecting users based on language preferences.',
+    problem: 'Language learners lack real-time conversational practice with suitable partners.',
+    solution: 'Matches users by language tags and enables real-time chat using scalable messaging APIs.',
+    screenshots: null,
+  },
+  {
+  id: 'cli-portfolio',
+  title: 'CLI Portfolio',
+  description: 'Terminal-style interactive developer portfolio.',
+  technologies: ['React', 'JavaScript', 'CSS',"three.js, xTerm.js"],
+  status: 'completed',
+  github: '',
+  demo: 'https://cli-portfolio-azure.vercel.app/',
+  overview: 'Web-based CLI interface simulating terminal commands to navigate portfolio content.',
+  problem: 'Traditional portfolios lack interactivity and uniqueness.',
+  solution: 'Implements command-based navigation for projects, skills, and contact information.',
+  screenshots: [
+    { src: cliScreenshotOne, label: 'Product workspace view' },
+    { src: cliScreenshotTwo, label: 'Portfolio' },
+  ],
+},
+{
+  id: 'dhcp-system',
+  title: 'Custom DHCP Client-Server System',
+  description: 'RFC-based DHCP protocol simulation with security features.',
+  technologies: ['Python', 'Sockets', 'Networking', 'Cryptography'],
+  status: 'completed',
+  github: 'https://github.com/chethans2005/Basic-DHCP-Protocol',
+  demo: '',
+  overview: 'Simulates DHCP protocol including lease management and secure packet handling.',
+  problem: 'Understanding and implementing DHCP protocol behavior in real networks is complex.',
+  solution: 'Implements full DHCP workflow with lease timers, multi-client handling, and RSA-based packet authentication.',
+  screenshots: null,
+},
 ]
 
 export default projects
