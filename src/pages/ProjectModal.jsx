@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 
 const STATUS = {
@@ -6,9 +7,71 @@ const STATUS = {
 }
 
 function ProjectModal({ project, onClose }) {
+  const modalRef = useRef(null)
+
   const screenshots = Array.isArray(project?.screenshots)
     ? project.screenshots.filter((screenshot) => Boolean(screenshot?.src)).slice(0, 2)
     : []
+
+  useEffect(() => {
+    if (!project) {
+      return undefined
+    }
+
+    const previousActive = document.activeElement
+    const modalEl = modalRef.current
+    const focusableSelectors = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ]
+
+    const getFocusable = () =>
+      Array.from(modalEl?.querySelectorAll(focusableSelectors.join(',')) || [])
+
+    const focusableElements = getFocusable()
+    focusableElements[0]?.focus()
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        onClose()
+        return
+      }
+
+      if (event.key !== 'Tab') {
+        return
+      }
+
+      const items = getFocusable()
+      if (items.length === 0) {
+        return
+      }
+
+      const first = items[0]
+      const last = items[items.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      if (previousActive instanceof HTMLElement) {
+        previousActive.focus()
+      }
+    }
+  }, [project, onClose])
 
   return (
     <AnimatePresence>
@@ -27,6 +90,11 @@ function ProjectModal({ project, onClose }) {
             transition={{ type: 'spring', stiffness: 320, damping: 28 }}
             className="modal-shell modal-content"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+            aria-describedby="project-modal-description"
+            ref={modalRef}
           >
             {/* Header */}
             <div className="modal-header">
@@ -37,8 +105,8 @@ function ProjectModal({ project, onClose }) {
                     {(STATUS[project.status] || STATUS['in-progress']).label}
                   </span>
                 </div>
-                <h3 className="modal-project-title">{project.title}</h3>
-                <p className="modal-project-desc">{project.description}</p>
+                <h3 id="project-modal-title" className="modal-project-title">{project.title}</h3>
+                <p id="project-modal-description" className="modal-project-desc">{project.description}</p>
               </div>
               <button
                 className="modal-close"

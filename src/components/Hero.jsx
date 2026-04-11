@@ -1,6 +1,6 @@
 import { motion as Motion } from 'framer-motion'
 
-function Hero({ onViewProjects, onContact }) {
+function Hero({ onViewProjects, onContact, resumeHref }) {
   return (
     <section
       id="hero"
@@ -30,6 +30,9 @@ function Hero({ onViewProjects, onContact }) {
             <button className="btn-secondary" onClick={onContact}>
               Get In Touch
             </button>
+            <a className="btn-secondary" href={resumeHref} target="_blank" rel="noreferrer">
+              View Resume
+            </a>
           </div>
         </Motion.div>
 

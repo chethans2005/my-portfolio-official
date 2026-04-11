@@ -71,7 +71,7 @@ const projects = [
   id: 'cli-portfolio',
   title: 'CLI Portfolio',
   description: 'Terminal-style interactive developer portfolio.',
-  technologies: ['React', 'JavaScript', 'CSS',"three.js, xTerm.js"],
+    technologies: ['React', 'JavaScript', 'CSS', 'Three.js', 'xTerm.js'],
   status: 'completed',
   github: '',
   demo: 'https://cli-portfolio-azure.vercel.app/',

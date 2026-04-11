@@ -38,7 +38,7 @@ function getCursorMeta(target) {
   return DEFAULT_CURSOR
 }
 
-function CustomCursor() {
+function CustomCursor({ enabled = true }) {
   const shellRef = useRef(null)
   const haloRef = useRef(null)
   const coreRef = useRef(null)
@@ -54,6 +54,11 @@ function CustomCursor() {
   })
 
   useEffect(() => {
+    if (!enabled) {
+      document.body.classList.remove('custom-cursor-enabled')
+      return undefined
+    }
+
     const canHover = window.matchMedia('(pointer: fine)').matches
 
     if (!canHover) {
@@ -149,7 +154,11 @@ function CustomCursor() {
       window.removeEventListener('mouseup', handlePointerUp)
       window.removeEventListener('blur', handleWindowLeave)
     }
-  }, [])
+  }, [enabled])
+
+  if (!enabled) {
+    return null
+  }
 
   const className = [
     'custom-cursor-shell',

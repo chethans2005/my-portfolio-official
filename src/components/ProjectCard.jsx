@@ -7,10 +7,22 @@ const STATUS = {
 
 function ProjectCard({ project, onOpen }) {
   const s = STATUS[project.status] || STATUS['in-progress']
+  const openProject = () => onOpen(project)
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      openProject()
+    }
+  }
 
   return (
     <Motion.article
-      onClick={() => onOpen(project)}
+      onClick={openProject}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open project details for ${project.title}`}
       whileHover={{ y: -6 }}
       transition={{ type: 'spring', stiffness: 260, damping: 18 }}
       className="project-card-shell project-card-compact"
