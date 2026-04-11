@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion as Motion } from 'framer-motion'
 import Particles from 'react-particles'
 import { loadSlim } from 'tsparticles-slim'
@@ -13,6 +13,29 @@ import projects from './data/projects'
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [enableDecor, setEnableDecor] = useState(false)
+
+  useEffect(() => {
+    const updateDecorPreference = () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const coarsePointer = window.matchMedia('(pointer: coarse)').matches
+      const saveData = Boolean(navigator.connection?.saveData)
+      setEnableDecor(!(reduceMotion || coarsePointer || saveData))
+    }
+
+    updateDecorPreference()
+
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const pointerQuery = window.matchMedia('(pointer: coarse)')
+
+    reduceMotionQuery.addEventListener('change', updateDecorPreference)
+    pointerQuery.addEventListener('change', updateDecorPreference)
+
+    return () => {
+      reduceMotionQuery.removeEventListener('change', updateDecorPreference)
+      pointerQuery.removeEventListener('change', updateDecorPreference)
+    }
+  }, [])
 
   const particlesInit = async (engine) => {
     await loadSlim(engine)
@@ -64,42 +87,47 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      <CustomCursor />
-      <div className="bg-orb bg-orb-one" />
-      <div className="bg-orb bg-orb-two" />
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <CustomCursor enabled={enableDecor} />
+      {enableDecor && <div className="bg-orb bg-orb-one" />}
+      {enableDecor && <div className="bg-orb bg-orb-two" />}
 
       {/* 3D molecule decorations */}
-      <div className="molecule molecule-1">
-        <div className="molecule-bond mb-1" />
-        <div className="molecule-bond mb-2" />
-        <div className="molecule-bond mb-3" />
-        <div className="molecule-bond mb-4" />
-        <div className="molecule-node mn-1" />
-        <div className="molecule-node mn-2" />
-        <div className="molecule-node mn-3" />
-        <div className="molecule-node mn-4" />
-      </div>
-      <div className="molecule molecule-2">
-        <div className="molecule-bond mb-1" />
-        <div className="molecule-bond mb-2" />
-        <div className="molecule-bond mb-3" />
-        <div className="molecule-bond mb-4" />
-        <div className="molecule-node mn-1" />
-        <div className="molecule-node mn-2" />
-        <div className="molecule-node mn-3" />
-        <div className="molecule-node mn-4" />
-      </div>
-      <div className="molecule molecule-3">
-        <div className="molecule-bond mb-1" />
-        <div className="molecule-bond mb-2" />
-        <div className="molecule-bond mb-3" />
-        <div className="molecule-bond mb-4" />
-        <div className="molecule-node mn-1" />
-        <div className="molecule-node mn-2" />
-        <div className="molecule-node mn-3" />
-        <div className="molecule-node mn-4" />
-      </div>
-      <Particles id="tsparticles" init={particlesInit} options={particlesOptions} className="particles-layer" />
+      {enableDecor && (
+        <>
+          <div className="molecule molecule-1">
+            <div className="molecule-bond mb-1" />
+            <div className="molecule-bond mb-2" />
+            <div className="molecule-bond mb-3" />
+            <div className="molecule-bond mb-4" />
+            <div className="molecule-node mn-1" />
+            <div className="molecule-node mn-2" />
+            <div className="molecule-node mn-3" />
+            <div className="molecule-node mn-4" />
+          </div>
+          <div className="molecule molecule-2">
+            <div className="molecule-bond mb-1" />
+            <div className="molecule-bond mb-2" />
+            <div className="molecule-bond mb-3" />
+            <div className="molecule-bond mb-4" />
+            <div className="molecule-node mn-1" />
+            <div className="molecule-node mn-2" />
+            <div className="molecule-node mn-3" />
+            <div className="molecule-node mn-4" />
+          </div>
+          <div className="molecule molecule-3">
+            <div className="molecule-bond mb-1" />
+            <div className="molecule-bond mb-2" />
+            <div className="molecule-bond mb-3" />
+            <div className="molecule-bond mb-4" />
+            <div className="molecule-node mn-1" />
+            <div className="molecule-node mn-2" />
+            <div className="molecule-node mn-3" />
+            <div className="molecule-node mn-4" />
+          </div>
+          <Particles id="tsparticles" init={particlesInit} options={particlesOptions} className="particles-layer" />
+        </>
+      )}
 
       <header className="app-header">
         <nav className="navbar-inner">
@@ -112,12 +140,17 @@ function App() {
                 </button>
               </li>
             ))}
+            <li>
+              <a className="nav-link" href="/resume.pdf" target="_blank" rel="noreferrer">
+                Resume
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
 
-      <main className="app-main">
-        <Hero onViewProjects={() => scrollTo('projects')} onContact={() => scrollTo('contact')} />
+      <main className="app-main" id="main-content" tabIndex={-1}>
+        <Hero onViewProjects={() => scrollTo('projects')} onContact={() => scrollTo('contact')} resumeHref="/resume.pdf" />
 
         <Motion.div
           initial={{ opacity: 0, y: 20 }}
