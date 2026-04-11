@@ -45,6 +45,8 @@ const skillCategories = [
   },
 ]
 
+const categoryPalette = ['#22d3ee', '#f472b6', '#f59e0b', '#a78bfa', '#34d399', '#60a5fa']
+
 const labels = skillCategories.map((category) => category.label)
 const skillScores = skillCategories.map((category) => category.score)
 
@@ -54,13 +56,36 @@ const data = {
     {
       label: 'Skill Level',
       data: skillScores,
-      backgroundColor: 'rgba(56, 189, 248, 0.18)',
-      borderColor: 'rgba(139, 92, 246, 0.9)',
-      borderWidth: 2,
-      pointBackgroundColor: 'rgba(56, 189, 248, 1)',
-      pointBorderColor: '#0F172A',
+      backgroundColor: (context) => {
+        const { chart } = context
+        const { ctx, chartArea } = chart
+        if (!chartArea) {
+          return 'rgba(56, 189, 248, 0.2)'
+        }
+        const gradient = ctx.createLinearGradient(0, chartArea.top, chartArea.right, chartArea.bottom)
+        gradient.addColorStop(0, 'rgba(34, 211, 238, 0.34)')
+        gradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.18)')
+        gradient.addColorStop(1, 'rgba(52, 211, 153, 0.24)')
+        return gradient
+      },
+      borderColor: '#67e8f9',
+      borderWidth: 2.5,
+      pointBackgroundColor: categoryPalette,
+      pointBorderWidth: 2,
+      pointBorderColor: '#020617',
+      pointRadius: 4.5,
+      pointHoverRadius: 6,
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(139, 92, 246, 1)',
+      pointHoverBorderColor: '#22d3ee',
+    },
+    {
+      label: 'Reference Line',
+      data: new Array(skillCategories.length).fill(75),
+      backgroundColor: 'transparent',
+      borderColor: 'rgba(148, 163, 184, 0.35)',
+      borderDash: [6, 6],
+      borderWidth: 1.4,
+      pointRadius: 0,
     },
   ],
 }
@@ -70,22 +95,41 @@ const options = {
     legend: {
       display: false,
     },
+    tooltip: {
+      backgroundColor: 'rgba(2, 6, 23, 0.95)',
+      borderColor: 'rgba(148, 163, 184, 0.35)',
+      borderWidth: 1,
+      titleColor: '#e2e8f0',
+      bodyColor: '#cbd5e1',
+      padding: 10,
+      displayColors: false,
+      callbacks: {
+        title: (items) => items[0]?.label || '',
+        label: (item) => `Confidence: ${item.raw}%`,
+      },
+    },
   },
   scales: {
     r: {
-      angleLines: { color: 'rgba(148, 163, 184, 0.25)' },
-      grid: { color: 'rgba(148, 163, 184, 0.22)' },
+      angleLines: { color: 'rgba(125, 211, 252, 0.22)' },
+      grid: { color: 'rgba(148, 163, 184, 0.18)' },
       pointLabels: {
-        color: '#cbd5e1',
+        color: '#e2e8f0',
         font: {
-          size: 12,
+          size: 11,
           family: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+          weight: 600,
         },
       },
       suggestedMin: 0,
       suggestedMax: 100,
       ticks: {
-        display: false,
+        showLabelBackdrop: false,
+        color: 'rgba(148, 163, 184, 0.75)',
+        z: 10,
+        font: {
+          size: 10,
+        },
         stepSize: 20,
       },
     },
@@ -112,9 +156,19 @@ function Skills() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="glass-card radar-container"
+          className="glass-card radar-shell"
         >
-          <Radar data={data} options={options} />
+          <div className="radar-container">
+            <Radar data={data} options={options} />
+          </div>
+          <div className="radar-legend">
+            {skillCategories.map((category, index) => (
+              <div key={category.label} className="radar-legend-item">
+                <span className="radar-legend-dot" style={{ backgroundColor: categoryPalette[index] }} />
+                <span>{category.label}</span>
+              </div>
+            ))}
+          </div>
         </Motion.div>
 
         <Motion.div
