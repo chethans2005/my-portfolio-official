@@ -66,15 +66,10 @@ body.custom-cursor-enabled {
   cursor: none;
 }
 
-body.custom-cursor-enabled input,
-body.custom-cursor-enabled textarea,
-body.custom-cursor-enabled select,
-body.custom-cursor-enabled [contenteditable="true"] {
-  cursor: text;
-}
-
-body.custom-cursor-enabled button:disabled {
-  cursor: not-allowed;
+body.custom-cursor-enabled *,
+body.custom-cursor-enabled *::before,
+body.custom-cursor-enabled *::after {
+  cursor: none !important;
 }
 
 a:focus-visible,
